@@ -1,7 +1,7 @@
 import os
 import random
-from 7day_Hangman_art import stages, logo
-from 7day_Hangman_words import word_list
+from Day7_Hangman_art import stages, logo
+from Day7_Hangman_words import word_list
 
 def clear_screen():
     os.system("clear")
