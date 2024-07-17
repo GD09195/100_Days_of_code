@@ -21,8 +21,12 @@ while True:
     drink = my_menu.find_drink(user_order)
 
     if not my_CoffeMaker.is_resource_sufficient(drink):
-        print("Sorry there are not enough resources")
         continue
+
+    print(f"{drink.name} cost: {drink.cost}")
+
+    my_MoneyMachine.make_payment(drink.cost)
+    my_CoffeMaker.make_coffee(drink)
 
 
 exit()
