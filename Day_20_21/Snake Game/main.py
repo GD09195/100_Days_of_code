@@ -15,7 +15,7 @@ def initialize_screen() -> Screen:
     return new_screen
 
 
-def update_game(my_snake: Snake, my_screen: Screen) -> None:
+def update_game(my_snake: Snake, my_screen: Screen, food: Food) -> None:
 
     game_on = True
     game_speed = 0.1
@@ -24,6 +24,10 @@ def update_game(my_snake: Snake, my_screen: Screen) -> None:
         my_screen.update()
         time.sleep(game_speed)
         my_snake.move()
+
+        #Detect Collision with food
+        if snake.head.distance(food) < 15:
+            food.set_position()
 
 
 def controls(my_screen: Screen) -> None:
@@ -36,7 +40,8 @@ def controls(my_screen: Screen) -> None:
 
 screen = initialize_screen()
 snake = Snake()
+my_food =  Food(600, 600)
 controls(screen)
-update_game(snake, screen)
+update_game(snake, screen, my_food)
 
 screen.exitonclick()
