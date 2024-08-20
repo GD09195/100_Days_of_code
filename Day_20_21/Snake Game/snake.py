@@ -20,12 +20,9 @@ class Snake:
         y_pos = 0
 
         for i in range(body_size):
-            new_turtle = Turtle(shape="square")
-            new_turtle.penup()
-            new_turtle.color("white")
             x_pos = i*x_offset
-            new_turtle.goto(x_pos, y_pos)
-            self.body.append(new_turtle)
+            self.add_segment((x_pos, y_pos))
+
 
     def move(self) -> None:
 
@@ -34,6 +31,19 @@ class Snake:
             new_y = self.body[segment - 1].ycor()
             self.body[segment].goto(new_x, new_y)
         self.head.forward(MOVE_DISTANCE)
+
+
+    def extend(self) -> None:
+        #Add new segment to the snake's body
+        self.add_segment(self.body[-1].position())
+
+    def add_segment(self, position):
+        #Add a segment to the snake's body at a given position
+        new_turtle = Turtle(shape="square")
+        new_turtle.penup()
+        new_turtle.color("white")
+        new_turtle.goto(position)
+        self.body.append(new_turtle)
 
     def up(self) -> None:
         if self.head.heading() != DOWN:
