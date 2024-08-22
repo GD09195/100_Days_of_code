@@ -1,5 +1,5 @@
-piano_keys = ["a","b","c","d","e","f","g","h","i"]
-piano_tuple = ("do","re","mi","fa","sol","la","si")
+piano_keys = ["a", "b", "c", "d", "e", "f", "g", "h", "i"]
+piano_tuple = ("do", "re", "mi", "fa", "sol", "la", "si")
 
 print(piano_keys[2:5])
 print(piano_keys[:5])

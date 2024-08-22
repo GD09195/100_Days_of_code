@@ -2,6 +2,7 @@ from turtle import Turtle
 ALIGNMENT = "center"
 FONT = ("Courier", 18, "bold")
 
+
 class Scoreboard(Turtle):
     def __init__(self):
         super().__init__()
@@ -10,7 +11,6 @@ class Scoreboard(Turtle):
         self.color("white")
         self.score: int = 0
         self.display: str = "Score: "
-
 
     def increase_score(self, increment: int) -> None:
         self.score += increment
@@ -24,7 +24,6 @@ class Scoreboard(Turtle):
         self.clear()
         self.goto(x_cor, y_cor)
         self.display_score()
-
 
     def game_over(self) -> None:
         self.goto(0,0)

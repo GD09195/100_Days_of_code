@@ -23,7 +23,6 @@ class Snake:
             x_pos = i*x_offset
             self.add_segment((x_pos, y_pos))
 
-
     def move(self) -> None:
 
         for segment in range(len(self.body) - 1, 0, -1):
@@ -32,13 +31,12 @@ class Snake:
             self.body[segment].goto(new_x, new_y)
         self.head.forward(MOVE_DISTANCE)
 
-
     def extend(self) -> None:
-        #Add new segment to the snake's body
+        # Add new segment to the snake's body
         self.add_segment(self.body[-1].position())
 
     def add_segment(self, position):
-        #Add a segment to the snake's body at a given position
+        # Add a segment to the snake's body at a given position
         new_turtle = Turtle(shape="square")
         new_turtle.penup()
         new_turtle.color("white")

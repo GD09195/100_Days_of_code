@@ -25,19 +25,19 @@ def update_game(my_snake: Snake, my_screen: Screen, food: Food, score: Scoreboar
         time.sleep(game_speed)
         my_snake.move()
 
-        #Detect Collision with food
+        # Detect Collision with food
         if snake.head.distance(food) < 15:
             food.set_position()
             score.increase_score(1)
             snake.extend()
 
-        #Detect Collision with wall
+        # Detect Collision with wall
         if snake.head.xcor()>280 or snake.head.xcor()<-280 or snake.head.ycor()>280 or snake.head.ycor()<-280:
             game_on = False
             score.game_over()
 
-        #Detect Collision with tail
-        #if head collides with any segment in tail.
+        # Detect Collision with tail
+        # if head collides with any segment in tail.
 
         for segment in snake.body[1:]:
             if snake.head.distance(segment) < 10:
@@ -56,7 +56,7 @@ def controls(my_screen: Screen) -> None:
 screen = initialize_screen()
 
 snake = Snake()
-my_food =  Food(600, 600)
+my_food = Food(600, 600)
 
 my_Score = Scoreboard()
 my_Score.setposition(0,276)

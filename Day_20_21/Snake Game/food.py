@@ -2,6 +2,7 @@ from operator import length_hint
 from turtle import Turtle
 import random
 
+
 class Food(Turtle):
     def __init__(self, width, length):
         super().__init__()
@@ -18,7 +19,6 @@ class Food(Turtle):
 
         self.set_window_limit(width, length)
         self.set_position()
-
 
     def set_window_limit(self, wid: int, leng: int)-> None:
         edge_gap = 10
