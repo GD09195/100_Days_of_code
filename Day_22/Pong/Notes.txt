@@ -1,7 +1,7 @@
 Classes:
 
 Main Game Controller
-Paddles
-Ball
-Screen
-Score
+O- Paddles
+O- Ball
+X- Screen
+O- Score
