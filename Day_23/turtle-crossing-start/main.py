@@ -8,6 +8,7 @@ screen = Screen()
 screen.tracer(0)
 player_turtle = Player()
 car_admin = CarManager()
+score = Scoreboard()
 
 screen.setup(width=600, height=600)
 
@@ -26,10 +27,12 @@ while game_is_on:
     for car in car_admin.cars:
         if car.distance(player_turtle) < 20:
             game_is_on = False
+            score.game_over()
 
     # Detect crossing
     if player_turtle.crossed_road():
         player_turtle.reset_position()
         car_admin.level_up()
+        score.increase_lev()
 
 screen.exitonclick()
