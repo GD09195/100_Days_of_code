@@ -65,3 +65,7 @@ data = pd.read_csv('weather_data.csv')
     #'Scores':[76, 56, 65],
 #}
 #new_data = pd.DataFrame(data_dict)
+
+#To access a piece of data in a row. You can tap into its attributes with .dot notation.
+#data[data.series == value].series.item()
+#item() returns the single value of the series

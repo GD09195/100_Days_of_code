@@ -8,7 +8,6 @@ squirrel_census_df = pd.read_csv("2018_Central_Park_Squirrel_Census_-_Squirrel_D
 #Save only "Primary Fur Color" Series from complete dataframe
 primary_fur_color_Series = squirrel_census_df[FUR_COLOR_COLUMN_TITLE]
 
-
 #Using pandas' .count()
 #gray_squirrels_count = primary_fur_color_Series[primary_fur_color_Series == 'Gray'].count()
 #Using python's len()
