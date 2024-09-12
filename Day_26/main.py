@@ -26,3 +26,6 @@ for (key, value) in panda_dataframe.items():
 #Loop through rows of a data frame. Each row is a Panda's Series
 for (index, row) in panda_dataframe.iterrows()
     print(row.column_name)
+
+#Create a Dicionaty using a list comprehension looping in a Pandas Dataframe
+new_dict = {new_key:new_value for (index, row) in df.iterrows()}
