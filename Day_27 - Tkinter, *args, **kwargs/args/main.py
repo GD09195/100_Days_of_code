@@ -1,6 +1,3 @@
-from numpy.ma.core import multiply
-
-
 #Define an unlimited amount of positional arguments
 #args will be a tuple
 def add(*args):
@@ -23,3 +20,20 @@ def calculate(base, **kwargs):
     return result
 
 print(calculate(2, add=3, multiply=5))
+
+#Creating a class with **kwargs
+class Car:
+    def __init__(self, **kwargs):
+        #Accesing dictionaries with squares brackets
+
+        #self.make = kwargs['make']
+        #self.model = kwargs['model']
+
+        #Accessing dictionaries with .get() function
+        #If the key doesnt exists, .get() would return None
+        self.make = kwargs.get('make')
+        self.model = kwargs.get('model')
+
+my_car = Car(make="Nissan", model="1995")
+print(my_car.make)
+print(my_car.model)
