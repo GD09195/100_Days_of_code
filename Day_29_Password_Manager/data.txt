@@ -1,2 +1,10 @@
 facebook.com,gd091295@gmail.com,facebookpassword
 twitter.com,gd091295@gmail.com,twitterpassword
+Reddit,gd091295@gmail.com,12345
+google,gd091295@gmail.com,12345
+amazon,gd091295@gmail.com,12345
+amazon,gd091295@gmail.com,123456
+amazon,gd091295@gmail.com,eeeee
+gggg,gd091295@gmail.com,ggg
+Facebook.com,gd091295@gmail.com,%LZ%49k&
+Google.com,gd091295@gmail.com,HP5%*afIe68oO2

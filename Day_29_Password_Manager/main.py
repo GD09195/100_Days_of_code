@@ -1,8 +1,33 @@
 import tkinter
+from tkinter import messagebox
+from random import randint, choice, shuffle
+import pyperclip
 
 # ---------------------------- PASSWORD GENERATOR ------------------------------- #
 def pass_generator()->None:
-    pass
+
+    letters = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u',
+               'v', 'w', 'x', 'y', 'z', 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P',
+               'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z']
+
+    numbers = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9']
+
+    symbols = ['!', '#', '$', '%', '&', '(', ')', '*', '+']
+
+    random_letters = [choice(letters) for i in range(randint(8,10))]
+    random_symbols = [choice(symbols) for i in range(randint(2,4))]
+    random_numbers = [choice(numbers) for i in range(randint(2,4))]
+
+    random_password = random_letters+random_symbols+random_numbers
+
+    shuffle(random_password)
+
+    random_password_str: str = ''.join(random_password)
+
+    entry_password.delete(0, tkinter.END)
+    entry_password.insert(0,random_password_str)
+
+    pyperclip.copy(text= random_password_str)
 
 
 # ---------------------------- SAVE PASSWORD ------------------------------- #
@@ -13,14 +38,24 @@ def pass_save()-> None:
     username = entry_username.get()
     password = entry_password.get()
 
-    #save data to data.txt file
-    with open('./data.txt', mode= 'a') as data_file:
-        data_file.write(f'{website},{username},{password}\n')
+    if website == '' or password == '':
+        messagebox.showwarning(title= 'Oops', message= "Please don't leave any fields empty!")
+        return
 
-    #Clear the Website & Password Entries
-    entry_website.delete(0, tkinter.END)
-    entry_password.delete(0, tkinter.END)
+    #Message Box
+    ok_to_save = messagebox.askokcancel(title= website, message= f'Save the following?\nUsername:{username}\nPassword:{password}')
 
+    if ok_to_save:
+
+        #save data to data.txt file
+        with open('./data.txt', mode= 'a') as data_file:
+            data_file.write(f'{website},{username},{password}\n')
+
+        #Clear the Website & Password Entries
+        entry_website.delete(0, tkinter.END)
+        entry_password.delete(0, tkinter.END)
+    else:
+        return
 
 # ---------------------------- UI SETUP ------------------------------- #
 
