@@ -2,6 +2,7 @@ import tkinter
 from tkinter import messagebox
 from random import randint, choice, shuffle
 import pyperclip
+import json
 
 # ---------------------------- PASSWORD GENERATOR ------------------------------- #
 def pass_generator()->None:
@@ -38,24 +39,35 @@ def pass_save()-> None:
     username = entry_username.get()
     password = entry_password.get()
 
-    if website == '' or password == '':
+    new_data: dict = {
+        website: {
+            'username': username ,
+            'password': password,
+            },
+        }
+
+    if website == '' or password == '' or website== '':
         messagebox.showwarning(title= 'Oops', message= "Please don't leave any fields empty!")
         return
 
     #Message Box
-    ok_to_save = messagebox.askokcancel(title= website, message= f'Save the following?\nUsername:{username}\nPassword:{password}')
+    #ok_to_save = messagebox.askokcancel(title= website, message= f'Save the following?\nUsername:{username}\nPassword:{password}')
 
-    if ok_to_save:
+    #save Data into a txt
+    #with open('./data.txt', mode= 'a') as data_file:
+        #data_file.write(f'{website},{username},{password}\n')
 
-        #save data to data.txt file
-        with open('./data.txt', mode= 'a') as data_file:
-            data_file.write(f'{website},{username},{password}\n')
+    #write data to a json file
+    with open('./data.json', mode= 'w') as data_file:
+        json.dump(new_data, data_file, indent= 4)
 
-        #Clear the Website & Password Entries
-        entry_website.delete(0, tkinter.END)
-        entry_password.delete(0, tkinter.END)
-    else:
-        return
+    #Read data from a json file
+    #with open('./data.json', mode='r') as data_file:
+        #data_dict = json.load(data_file)
+
+    #Clear the Website & Password Entries
+    entry_website.delete(0, tkinter.END)
+    entry_password.delete(0, tkinter.END)
 
 # ---------------------------- UI SETUP ------------------------------- #
 
