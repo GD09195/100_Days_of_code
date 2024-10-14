@@ -4,6 +4,31 @@ from random import randint, choice, shuffle
 import pyperclip
 import json
 
+# --------------------------- JSON DATA FILE VERIFICATION  ------------------------------- #
+
+# --------------------------- SEARCH  PASSWORD ------------------------------- #
+
+def find_password()-> None:
+
+    website_to_search = entry_website.get()
+
+    try:
+        with open('./data.json', mode= 'r') as data_json:
+            data_dict: dict = json.load(data_json)
+    except FileNotFoundError:
+        messagebox.showwarning(title='Error', message="No Data File Found")
+
+    try:
+        username = data_dict[website_to_search]['username']
+        password = data_dict[website_to_search]['password']
+    except KeyError:
+        messagebox.showwarning(title='Error', message="No details for the website")
+    else:
+
+        messagebox.showwarning(title=f'{website_to_search}', message=f"Username:{username}\nPassword:{password}")
+
+
+
 # ---------------------------- PASSWORD GENERATOR ------------------------------- #
 def pass_generator()->None:
 
@@ -58,16 +83,32 @@ def pass_save()-> None:
         #data_file.write(f'{website},{username},{password}\n')
 
     #write data to a json file
-    with open('./data.json', mode= 'w') as data_file:
-        json.dump(new_data, data_file, indent= 4)
+    #with open('./data.json', mode= 'w') as data_file:
+    #    json.dump(new_data, data_file, indent= 4)
 
     #Read data from a json file
     #with open('./data.json', mode='r') as data_file:
-        #data_dict = json.load(data_file)
+        #data_dict: dict = json.load(data_file)
 
-    #Clear the Website & Password Entries
-    entry_website.delete(0, tkinter.END)
-    entry_password.delete(0, tkinter.END)
+    #Update json file
+    try:
+        with open('./data.json', mode= 'r') as data_file:
+            #Reading existing data
+            data: dict = json.load(data_file)
+    except FileNotFoundError:
+        with open('./data.json', mode='w') as data_file:
+            json.dump(new_data,data_file, indent=4)
+    else:
+        #Updating old data dict with new data
+        data.update(new_data)
+
+        with open('./data.json', mode= 'w') as data_file:
+            json.dump(data, data_file, indent=4)
+
+    finally:
+        #Clear the Website & Password Entries
+        entry_website.delete(0, tkinter.END)
+        entry_password.delete(0, tkinter.END)
 
 # ---------------------------- UI SETUP ------------------------------- #
 
@@ -96,8 +137,8 @@ label_password.grid(row= 3, column= 0)
 #Entries
 
 #Website
-entry_website = tkinter.Entry(width= 40)
-entry_website.grid(row= 1, column= 1, columnspan= 2)
+entry_website = tkinter.Entry(width= 20)
+entry_website.grid(row= 1, column= 1)
 entry_website.focus()
 #Email/Username
 entry_username = tkinter.Entry(width=40)
@@ -115,7 +156,8 @@ button_generate_Password.grid(row= 3, column= 2)
 #Add
 button_add = tkinter.Button(text= 'Add', width= 36, command= pass_save)
 button_add.grid(row= 4, column= 1, columnspan=2)
-
-
+#Search
+button_search = tkinter.Button(text='Search', width=16, command= find_password)
+button_search.grid(row= 1, column=2)
 
 window_welcome.mainloop()
