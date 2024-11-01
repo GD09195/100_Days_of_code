@@ -1,0 +1,6 @@
+Application:
+gdtest0912@gmail.com
+Python Mail
+uant ymuz hufw ozwy
+
+smtplib.SMTP("smtp.gmail.com", port=587)
