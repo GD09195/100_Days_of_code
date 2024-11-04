@@ -1,0 +1,6 @@
+API = Application programming interface
+
+API endpoint = url of the location where the data comes from
+example: api.coinbase.com
+
+API Parameters= {   }
