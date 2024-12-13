@@ -28,3 +28,6 @@ class QuizBrain:
 
         print(f"Your current score is: {self.score}/{self.question_number}")
         print("\n")
+
+    def get_score(self)->int:
+        return self.score
